@@ -197,8 +197,23 @@ public class Homework {
   static List<Person> cheapPersonsInDepartment(List<Person> people) {
     // FIXME: ваша реализация здесь
 
+    return people.stream()
+            .collect(Collectors.toMap(
+                    Person::getDepart,
+                    Function.identity(),
+                    (a,b)->{
+                      if (a.getSalary()<b.getSalary()){
+                        return a;
+                      }
+                      return b;
+                    }
+            ))
+           .values()
+            .stream()
+            .toList();
 
-    return  null;
+
+
   }
 
 }
